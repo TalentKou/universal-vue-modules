@@ -1,5 +1,9 @@
 # universal-vue-modules
 
+### Notes
+
+需要创建和试验新的组件时，请先在 dev 分支进行，确定该组件万无一失了，再合并到 master 分支
+
 ## Project setup
 
 ```
