@@ -1,7 +1,8 @@
 {
-  "printWidth": 80,
-  "tabWidth": 2,
-  "useTabs": true,
-  "singleQuote": true,
-  "jsxSingleQuote": true
+	"printWidth": 80,
+	"tabWidth": 2,
+	"useTabs": true,
+	"singleQuote": true,
+	"jsxSingleQuote": true,
+	"endOfLine": "lf"
 }
