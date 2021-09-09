@@ -1,18 +1,18 @@
 /*
  * <!-- prettier-ignore -->
- * File Path: \command.js
+ * File Path: \command-ts.js
  * Project Path: c:\Users\admin\projects\fontend-knowledge-repository\universal-vue-modules
  * -----
  * File Created: Wednesday, 8th September 2021 1:56:00 pm
  * Author: koucaihua (koucaihua@fkhwl.com)
  * -----
- * Last Modified: Thursday, 9th September 2021 10:41:36 am
+ * Last Modified: Thursday, 9th September 2021 10:49:55 am
  * Modified By: koucaihua (koucaihua@fkhwl.com>)
  * -----
  * Description: 首先把该js文件放置在和package.json同级的目录下，
- *              然后在package.json的"scripts"字段添加"add": "node command.js"，
- *              最后用npm run add <module-name>添加模块，用npm run add <module-name> <component-name>添加组件到模块
- * Notes: 目前该命令只能生成js的模块和组件
+ *              然后在package.json的"scripts"字段添加"add:ts": "node command-ts.js"，
+ *              最后用npm run add:ts <module-name>添加模块，用npm run add:ts <module-name> <component-name>添加组件到模块
+ * Notes: 目前该命令只能生成ts的模块和组件
  */
 
 const fs = require('fs');
@@ -43,7 +43,7 @@ if (compoName) {
 		.then((dirName) => {
 			return makeFile(
 				dirName,
-				'index.js',
+				'index.ts',
 				'import ' +
 					moduleName +
 					" from './components/" +
@@ -88,7 +88,7 @@ function makeFile(dirName, fileName, data) {
 
 function readModuleFile() {
 	return new Promise((resolve, reject) => {
-		fs.readFile(dirname + 'index.js', (err, data) => {
+		fs.readFile(dirname + 'index.ts', (err, data) => {
 			if (err) {
 				reject(err);
 			} else {
@@ -113,7 +113,7 @@ function writeCompoInModule() {
 		});
 
 		return new Promise((resolve, reject) => {
-			fs.writeFile(dirname + 'index.js', data, (err) => {
+			fs.writeFile(dirname + 'index.ts', data, (err) => {
 				if (err) {
 					reject(err);
 				} else {
@@ -127,27 +127,22 @@ function writeCompoInModule() {
 function getTemplateStr(templateName) {
 	return (
 		'<template>\n\
-	<div class="' +
-		templateName +
-		'">\n\
-		\n\
-	</div>\n\
+\n\
 </template>\n\
 \n\
-<script>\n\
-export default {\n\
-	name: "' +
+<script lang="ts">\n\
+import { Component, Vue } from \'vue-property-decorator\';\n\
+\n\
+@Component\n\
+export default class ' +
 		templateName +
-		'"\n\
+		' extends Vue {\n\
+\n\
 }\n\
 </script>\n\
 \n\
-<style scoped>\n\
-.' +
-		templateName +
-		'{\n\
-	\n\
-}\n\
+<style scoped lang="less">\n\
+\n\
 </style>'
 	);
 }
